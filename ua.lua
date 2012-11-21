@@ -19,3 +19,5 @@ local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound)
         data = post_message
     })
 end
+
+return { push_alias = push_alias }
