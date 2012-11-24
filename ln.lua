@@ -1,11 +1,10 @@
 local UA_PUSHURL = 'https://go.urbanairship.com/api/push/'
 
-local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound, badge)
+local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound)
     local payload = {
         aps = {
             alert = message,
-            sound = sound,
-            badge = badge
+            sound = sound
         },
         aliases = {alias}
     }
