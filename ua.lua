@@ -1,4 +1,5 @@
 local UA_PUSHURL = 'https://go.urbanairship.com/api/push/'
+local UA_FEEDBACKURL = 'https://go.urbanairship.com/api/device_tokens/'
 
 local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound, badge)
     local payload = {
@@ -21,4 +22,17 @@ local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound, ba
     })
 end
 
-return { push_alias = push_alias }
+local device_token_feedback = function (UA_APPKEY, UA_PUSHSECRET, since)
+    return  http.request({
+        url = UA_FEEDBACKURL,
+        headers = {
+            ['Content-Type'] = "application/json"
+        },
+        auth = {UA_APPKEY, UA_PUSHSECRET},
+        params = {
+            since = since
+        }
+    })
+end
+
+return { push_alias = push_alias, device_token_feedback = device_token_feedback }
