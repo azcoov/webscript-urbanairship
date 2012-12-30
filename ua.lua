@@ -1,5 +1,6 @@
 local UA_PUSHURL = 'https://go.urbanairship.com/api/push/'
 local UA_FEEDBACKURL = 'https://go.urbanairship.com/api/device_tokens/feedback/'
+local UA_TOKENSURL = 'https://go.urbanairship.com/api/device_tokens/'
 
 local push_alias = function (UA_APPKEY, UA_PUSHSECRET, alias, message, sound, badge)
     local payload = {
@@ -32,6 +33,17 @@ local device_token_feedback = function (UA_APPKEY, UA_PUSHSECRET, since)
         params = {
             since = since
         }
+    })
+end
+
+local inactivate_device = function (UA_APPKEY, UA_PUSHSECRET, token)
+    return  http.request({
+        method = "delete",
+        url = UA_TOKENSURL + token,
+        headers = {
+            ['Content-Type'] = "application/json"
+        },
+        auth = {UA_APPKEY, UA_PUSHSECRET}
     })
 end
 
