@@ -47,4 +47,8 @@ local inactivate_device = function (UA_APPKEY, UA_PUSHSECRET, token)
     })
 end
 
-return { push_alias = push_alias, device_token_feedback = device_token_feedback }
+return {
+    push_alias = push_alias,
+    device_token_feedback = device_token_feedback,
+    inactivate_device = inactivate_device
+}
