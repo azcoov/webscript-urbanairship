@@ -39,7 +39,7 @@ end
 local inactivate_device = function (UA_APPKEY, UA_PUSHSECRET, token)
     return  http.request({
         method = "delete",
-        url = UA_TOKENSURL + token,
+        url = UA_TOKENSURL .. token,
         headers = {
             ['Content-Type'] = "application/json"
         },
